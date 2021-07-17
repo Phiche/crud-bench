@@ -23,7 +23,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") {
         exclude("org.hibernate.validator:hibernate-validator")
     }
-    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude("org.springframework.boot:spring-boot-starter-tomcat")
+    }
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+
     compileOnly("org.springframework:spring-context-indexer")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
