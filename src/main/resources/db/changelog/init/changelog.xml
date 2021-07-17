@@ -3,7 +3,29 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <include file="init/changelog.xml" relativeToChangelogFile="true"/>
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="bench_init" author="phicher">
+        <tagDatabase tag="bench_init"/>
+    </changeSet>
+
+    <changeSet id="CREATE_BENCH" author="d.kotelnikov">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter=";"
+                 path="db/changelog/init/sql/bench.sql"
+                 relativeToChangelogFile="false"
+                 splitStatements="true"
+                 stripComments="true"/>
+        <rollback>
+            <sqlFile dbms="postgresql"
+                     encoding="utf8"
+                     endDelimiter=";"
+                     path="db/changelog/init/rollback/bench.sql"
+                     relativeToChangelogFile="false"
+                     splitStatements="true"
+                     stripComments="true"/>
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

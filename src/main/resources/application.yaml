@@ -1,0 +1,35 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  application:
+    name: crud-bench
+  profiles:
+    active: dev
+  sleuth:
+    enabled: true
+  main:
+    lazy-initialization: false
+#  data:
+#    jpa:
+#      repositories:
+#        bootstrap-mode: lazy
+
+server:
+  port: 8080 # never change it on qa/test. Even in consul
+  servlet:
+    # should be changed in consul only. Here for test purpose only
+    context-path: /${spring.application.name}
+
+datasource:
+  jdbc-url: jdbc:postgresql://localhost:5432/compose-postgres
+  username: compose-postgres
+  password: compose-postgres
+  connectionTimeout: 60000
+  maxPoolSize: 5
+
+# never change it on qa/test. Even in consul. Here just for local test
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, kafkaRebalance
